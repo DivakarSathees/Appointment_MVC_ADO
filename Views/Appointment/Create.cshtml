@@ -1,0 +1,33 @@
+@model Appointment
+
+<h2>Add New Appointment</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Patientname)
+        @Html.TextBoxFor(model => model.Patientname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Doctorname)
+        @Html.TextBoxFor(model => model.Doctorname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppointmentDate)
+        @Html.TextBoxFor(model => model.AppointmentDate, new { @class = "form-control" , type = "date"})
+    </div> <!-- add a closing tag for the div element -->
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartTime)
+        @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndTime)
+        @Html.TextBoxFor(model => model.EndTime, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Reason)
+        @Html.TextBoxFor(model => model.Reason, new { @class = "form-control" })
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary" />
+}

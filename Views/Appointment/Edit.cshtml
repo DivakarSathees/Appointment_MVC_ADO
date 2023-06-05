@@ -1,0 +1,54 @@
+@model dotnetapp.Models.Appointment
+
+<h2>Edit Appointment</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Appointmentid)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Patientname)
+        @Html.TextBoxFor(model => model.Patientname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Patientname, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Doctorname)
+        @Html.TextBoxFor(model => model.Doctorname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Doctorname, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppointmentDate)
+        @Html.TextBoxFor(model => model.AppointmentDate, new { @class = "form-control",type = "date" })
+        @Html.ValidationMessageFor(model => model.AppointmentDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartTime)
+        @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndTime)
+        @Html.TextBoxFor(model => model.EndTime, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Reason)
+        @Html.TextBoxFor(model => model.Reason, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
