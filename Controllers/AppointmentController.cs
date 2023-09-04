@@ -189,7 +189,7 @@ using Microsoft.Data.SqlClient;
 
 public class AppointmentController : Controller
 {
-    private string connectionString = "User ID=sa;password=examlyMssql@123;server=dfeafccbbabafefbcfacbdcbaeadbebabcdebdca-0;Database=AppointmentDB;trusted_connection=false;Persist Security Info=False;Encrypt=False";
+    private string connectionString = "User ID=sa;password=examlyMssql@123;server=dffafdafebcfacbdcbaeadbebabcdebdca-0;Database=AppointmentDB;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
     public ActionResult Index()
     {
@@ -280,95 +280,95 @@ catch(Exception ex)
     }
 
 
-    public ActionResult Edit(int id)
-    {
-        try{
-    Appointment appointment = null;
+//     public ActionResult Edit(int id)
+//     {
+//         try{
+//     Appointment appointment = null;
 
-    using (SqlConnection connection = new SqlConnection(connectionString))
-    {
-        // Console.WriteLine(@Appointmentid);
-        string query = "SELECT * FROM Appointment WHERE Appointmentid = @Appointmentid";
+//     using (SqlConnection connection = new SqlConnection(connectionString))
+//     {
+//         // Console.WriteLine(@Appointmentid);
+//         string query = "SELECT * FROM Appointment WHERE Appointmentid = @Appointmentid";
 
-        using (SqlCommand command = new SqlCommand(query, connection))
-        {
-            command.Parameters.AddWithValue("@Appointmentid", id);
+//         using (SqlCommand command = new SqlCommand(query, connection))
+//         {
+//             command.Parameters.AddWithValue("@Appointmentid", id);
 
-            connection.Open();
+//             connection.Open();
 
-            SqlDataReader reader = command.ExecuteReader();
+//             SqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
-            {
-                appointment = new Appointment();
-                    appointment.Appointmentid = Convert.ToInt32(reader["Appointmentid"]);
-                    appointment.Patientname = reader["Patientname"].ToString();
-                    appointment.Doctorname = reader["Doctorname"].ToString();
-                    appointment.AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]);
-                    appointment.StartTime = TimeSpan.Parse(reader["StartTime"].ToString());
-                    appointment.EndTime = TimeSpan.Parse(reader["EndTime"].ToString());
-                    appointment.Reason = reader["Reason"].ToString();
-            }
+//             while (reader.Read())
+//             {
+//                 appointment = new Appointment();
+//                     appointment.Appointmentid = Convert.ToInt32(reader["Appointmentid"]);
+//                     appointment.Patientname = reader["Patientname"].ToString();
+//                     appointment.Doctorname = reader["Doctorname"].ToString();
+//                     appointment.AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]);
+//                     appointment.StartTime = TimeSpan.Parse(reader["StartTime"].ToString());
+//                     appointment.EndTime = TimeSpan.Parse(reader["EndTime"].ToString());
+//                     appointment.Reason = reader["Reason"].ToString();
+//             }
 
-            reader.Close();
-        }
-    }
-    if (appointment == null)
-        {
-            return NotFound();
-        }
-    return View(appointment);
+//             reader.Close();
+//         }
+//     }
+//     if (appointment == null)
+//         {
+//             return NotFound();
+//         }
+//     return View(appointment);
 
-        }
-        catch (Exception ex)
-    {
-        Console.WriteLine(ex.Message);
-        // You can handle the exception as per your requirements (e.g., logging, displaying an error message)
-        return BadRequest("An error occurred while retrieving the furniture item.");
-    }
+//         }
+//         catch (Exception ex)
+//     {
+//         Console.WriteLine(ex.Message);
+//         // You can handle the exception as per your requirements (e.g., logging, displaying an error message)
+//         return BadRequest("An error occurred while retrieving the furniture item.");
+//     }
 
-    // return View(appointment);
-}
+//     // return View(appointment);
+// }
 
-    [HttpPost]
-    public ActionResult Edit(Appointment appointment)
-    {
-        try{
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-string query = "UPDATE Appointment SET Patientname = @Patientname, Doctorname = @Doctorname, Appointmentdate = @AppointmentDate, StartTime = @StartTime, EndTime = @Endtime, reason = @Reason WHERE Appointmentid = @Appointmentid";
+//     [HttpPost]
+//     public ActionResult Edit(Appointment appointment)
+//     {
+//         try{
+//         using (SqlConnection connection = new SqlConnection(connectionString))
+//         {
+// string query = "UPDATE Appointment SET Patientname = @Patientname, Doctorname = @Doctorname, Appointmentdate = @AppointmentDate, StartTime = @StartTime, EndTime = @Endtime, reason = @Reason WHERE Appointmentid = @Appointmentid";
 
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Appointmentid", appointment.Appointmentid);
+//             using (SqlCommand command = new SqlCommand(query, connection))
+//             {
+//                 command.Parameters.AddWithValue("@Appointmentid", appointment.Appointmentid);
 
-                Console.WriteLine(appointment.Appointmentid);
-                command.Parameters.AddWithValue("@Doctorname", appointment.Doctorname);
-                 Console.WriteLine(appointment.Doctorname);
-                command.Parameters.AddWithValue("@Patientname", appointment.Patientname);
-                command.Parameters.AddWithValue("@AppointmentDate", appointment.AppointmentDate);
-                command.Parameters.AddWithValue("@StartTime", appointment.StartTime);
-                command.Parameters.AddWithValue("@EndTime", appointment.EndTime);
-                command.Parameters.AddWithValue("@Reason", appointment.Reason);
+//                 Console.WriteLine(appointment.Appointmentid);
+//                 command.Parameters.AddWithValue("@Doctorname", appointment.Doctorname);
+//                  Console.WriteLine(appointment.Doctorname);
+//                 command.Parameters.AddWithValue("@Patientname", appointment.Patientname);
+//                 command.Parameters.AddWithValue("@AppointmentDate", appointment.AppointmentDate);
+//                 command.Parameters.AddWithValue("@StartTime", appointment.StartTime);
+//                 command.Parameters.AddWithValue("@EndTime", appointment.EndTime);
+//                 command.Parameters.AddWithValue("@Reason", appointment.Reason);
 
-                connection.Open();
-                int rowsAffected = command.ExecuteNonQuery();
+//                 connection.Open();
+//                 int rowsAffected = command.ExecuteNonQuery();
 
-                if (rowsAffected == 0)
-                {
-                    // The provided ID does not exist in the Furniture table
-                    return NotFound();
-                }
-            }
-        }
-        }
-        catch(Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
+//                 if (rowsAffected == 0)
+//                 {
+//                     // The provided ID does not exist in the Furniture table
+//                     return NotFound();
+//                 }
+//             }
+//         }
+//         }
+//         catch(Exception ex)
+// {
+//     Console.WriteLine(ex.Message);
+// }
 
-        return RedirectToAction("Index");
-    }
+//         return RedirectToAction("Index");
+//     }
 
    
 
